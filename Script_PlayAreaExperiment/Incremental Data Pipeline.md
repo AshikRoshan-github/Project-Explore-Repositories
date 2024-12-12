@@ -55,7 +55,7 @@ Architecture Diagram:
 ![image](https://github.com/user-attachments/assets/7f9522aa-44d4-4aa0-bc99-f379e50b6fb6)
 
 **Script:** 
-
+```
 import pyodbc
 import pandas as pd
 from dotenv import load_dotenv, set_key
@@ -220,4 +220,4 @@ if connection:
             logging.info("Snowpark session closed.")
 
 print("----------CHECK THE LOG-----------")
-
+```
