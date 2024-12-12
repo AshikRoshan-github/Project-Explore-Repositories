@@ -52,25 +52,13 @@ Process: Closes the SQL Server and Snowflake connections and the logging handler
 
 Architecture Diagram:
 
-+-----------------+     +---------------------+     +------------------+     +-----------------+
-| SQL Server      |---->| Extract Data (pyodbc)|---->| Pandas DataFrame  |---->| Snowflake      |
-|                 |     |                     |     |                  |     |                 |
-| Input:          |     | Output:              |     |  Output:        |     | Input:          |
-|  - Credentials  |     |   Pandas DataFrame   |     |   DataFrame      |     |  - Credentials  |
-|  - src_table    |     +---------------------+     |  - stg_table    |     |  - DataFrame    |
-|  - Lst_RunTime  |                                  |                  |     +-----------------+
-+-----------------+                                  +------------------+
-
-
-                    ^                                     |
-                    |                                     v
-                    |                                +-----------+
-                    +---------------------------------| .env File  | (Lst_RunTime)
-                                                    +-----------+
+![image](https://github.com/user-attachments/assets/7f9522aa-44d4-4aa0-bc99-f379e50b6fb6)
 
 **Script:** 
 
-**import pyodbc
+**
+
+import pyodbc
 import pandas as pd
 from dotenv import load_dotenv, set_key
 from datetime import datetime
@@ -78,18 +66,18 @@ from snowflake.snowpark import Session
 import os
 import logging
 
-# Get the current timestamp
+#Get the current timestamp
 current_timestamp = datetime.now()
 
-# Define the source table in Snowflake
+#Define the source table in Snowflake
 src_table= 'EmployeeRecords'
 
-# Define the staging table in Snowflake
+#Define the staging table in Snowflake
 stg_table = "STG_EMPLOYEERECORDS"
 
 log_file_path = f'{src_table}.log'
 
-# Check if the log file exists
+#Check if the log file exists
 if os.path.exists(log_file_path):
     with open(log_file_path, 'w') as file:
         # Clearing the file by writing nothing to it
@@ -98,20 +86,20 @@ if os.path.exists(log_file_path):
 else:
     print(f"{log_file_path} does not exist. Skipping clearing.")
 
-# Proceed with the rest of the code
+#Proceed with the rest of the code
 print("Continuing with the rest of the script...")
 
 
-# Configure logging
+#Configure logging
 log_filename = f'{src_table}.log'
 logging.basicConfig(filename=log_filename,
                     level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Load the .env file
+#Load the .env file
 load_dotenv()
 
-# Retrieve the current Lst_RunTime from .env file
+#Retrieve the current Lst_RunTime from .env file
 current_lifetime = os.getenv('Lst_RunTime')
 logging.info(f'Current Lst_RunTime: {current_lifetime}')
 
@@ -122,16 +110,16 @@ except Exception as e:
     logging.error(f"Error converting Lst_RunTime to datetime: {e}")
     raise
 
-# Define the connection parameters for SQL Server
+#Define the connection parameters for SQL Server
 server = 'xxx'  # Add your server name
 database = 'xxx'
 username = 'xxx'
 password = 'xxx'
 
-# Create the connection string for pyodbc
+#Create the connection string for pyodbc
 connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
-# Establish the connection using pyodbc
+#Establish the connection using pyodbc
 try:
     connection = pyodbc.connect(connection_string)
     logging.info("Connection to SQL Server successful!")
@@ -233,4 +221,5 @@ if connection:
             session.close()
             logging.info("Snowpark session closed.")
 
-print("----------CHECK THE LOG-----------")**
+print("----------CHECK THE LOG-----------")
+**
