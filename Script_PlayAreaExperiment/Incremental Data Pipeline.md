@@ -56,8 +56,6 @@ Architecture Diagram:
 
 **Script:** 
 
-**
-
 import pyodbc
 import pandas as pd
 from dotenv import load_dotenv, set_key
@@ -182,7 +180,7 @@ if connection:
         connection.close()
         logging.info("SQL Server connection closed.")
 
-# Now, let's set up the Snowflake Snowpark session
+#Now, let's set up the Snowflake Snowpark session
     snowflake_connection_parameters = {
         "account": 'xxx',
         "user": 'xxx',
@@ -222,4 +220,3 @@ if connection:
             logging.info("Snowpark session closed.")
 
 print("----------CHECK THE LOG-----------")
-**
