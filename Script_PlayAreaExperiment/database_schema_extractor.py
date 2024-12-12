@@ -4,10 +4,10 @@ import json
 db_dict = {}
 
 # Replace the placeholders with your server, database, username, and password
-server = 'dwat.database.windows.net'
-database = 'jiffyAupairDev'
-username = 'dWaT'
-password = 'Optis0!7380'
+server   = 'xxx'
+database = 'xxx'
+username = 'xxx'
+password = 'xxx'
 
 # Create the connection string
 conn_str = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};UID={username};PWD={password}'
