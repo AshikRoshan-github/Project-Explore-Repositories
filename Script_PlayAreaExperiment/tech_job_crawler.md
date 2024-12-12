@@ -46,7 +46,7 @@ Item Pipeline: Processes the yielded job data items. This could include data cle
 
 
 **Script:**
-
+```
 import scrapy
 
 class ScrapemeSpider(scrapy.Spider):
@@ -72,7 +72,7 @@ class ScrapemeSpider(scrapy.Spider):
                 "price": price,
                 "url": product.css("a").attrib["href"],
             }
-
+```
 **output:**
 
 ![image](https://github.com/user-attachments/assets/c82ee2ca-083e-4e26-a0c1-a5f8901ef785)
